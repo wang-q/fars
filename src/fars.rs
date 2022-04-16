@@ -4,10 +4,10 @@ use clap::*;
 mod cmd_fars;
 
 fn main() -> std::io::Result<()> {
-    let app = Command::new("far")
+    let app = Command::new("fars")
         .version(crate_version!())
         .author(crate_authors!())
-        .about("`far` is a lightweight tool for operating sequences in the fasta format")
+        .about("`fars` is a lightweight tool for operating sequences in the fasta format")
         .propagate_version(true)
         .arg_required_else_help(true)
         .subcommand(cmd_fars::size::make_subcommand())

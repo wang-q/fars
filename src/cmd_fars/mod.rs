@@ -1,4 +1,4 @@
-//! Subcommand modules for the `far` binary.
+//! Subcommand modules for the `fars` binary.
 
 pub mod region;
 pub mod size;

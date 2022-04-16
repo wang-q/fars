@@ -23,6 +23,23 @@ brew install fars
 * `fars`
 
 ```text
+$ fars
+fars 0.0.1
+wang-q <wang-q@outlook.com>
+`fars` is a lightweight tool for operating sequences in the fasta format
+
+USAGE:
+    fars [SUBCOMMAND]
+
+OPTIONS:
+    -h, --help       Print help information
+    -V, --version    Print version information
+
+SUBCOMMANDS:
+    help      Print this message or the help of the given subcommand(s)
+    region    Extract regions from a FA file
+    size      Count total bases in FA file(s)
+    some      Extract some FA records
 
 ```
 
