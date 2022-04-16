@@ -2,7 +2,7 @@
 name = "fars"
 version = "0.0.1"
 authors = ["wang-q <wang-q@outlook.com>"]
-description = "`Command line tools for fasta files"
+description = "Command line tools for fasta files"
 documentation = "https://github.com/wang-q/fars"
 homepage = "https://github.com/wang-q/fars"
 repository = "https://github.com/wang-q/fars"
