@@ -4,7 +4,7 @@ use std::process::Command; // Run programs
 
 #[test]
 fn command_invalid() -> Result<(), Box<dyn std::error::Error>> {
-    let mut cmd = Command::cargo_bin("far")?;
+    let mut cmd = Command::cargo_bin("fars")?;
     cmd.arg("foobar");
     cmd.assert().failure().stderr(predicate::str::contains(
         "which wasn't expected, or isn't valid in this context",
@@ -15,8 +15,12 @@ fn command_invalid() -> Result<(), Box<dyn std::error::Error>> {
 
 #[test]
 fn command_size() -> Result<(), Box<dyn std::error::Error>> {
-    let mut cmd = Command::cargo_bin("far")?;
-    let output = cmd.arg("size").arg("tests/far/ufasta.fa").output().unwrap();
+    let mut cmd = Command::cargo_bin("fars")?;
+    let output = cmd
+        .arg("size")
+        .arg("tests/fars/ufasta.fa")
+        .output()
+        .unwrap();
     let stdout = String::from_utf8(output.stdout).unwrap();
 
     assert_eq!(stdout.lines().count(), 50);
@@ -37,11 +41,11 @@ fn command_size() -> Result<(), Box<dyn std::error::Error>> {
 
 #[test]
 fn command_size_gz() -> Result<(), Box<dyn std::error::Error>> {
-    let mut cmd = Command::cargo_bin("far")?;
+    let mut cmd = Command::cargo_bin("fars")?;
     let output = cmd
         .arg("size")
-        .arg("tests/far/ufasta.fa")
-        .arg("tests/far/ufasta.fa.gz")
+        .arg("tests/fars/ufasta.fa")
+        .arg("tests/fars/ufasta.fa.gz")
         .output()
         .unwrap();
     let stdout = String::from_utf8(output.stdout).unwrap();
@@ -55,11 +59,11 @@ fn command_size_gz() -> Result<(), Box<dyn std::error::Error>> {
 
 #[test]
 fn command_some() -> Result<(), Box<dyn std::error::Error>> {
-    let mut cmd = Command::cargo_bin("far")?;
+    let mut cmd = Command::cargo_bin("fars")?;
     let output = cmd
         .arg("some")
-        .arg("tests/far/ufasta.fa")
-        .arg("tests/far/lst.txt")
+        .arg("tests/fars/ufasta.fa")
+        .arg("tests/fars/lst.txt")
         .output()
         .unwrap();
     let stdout = String::from_utf8(output.stdout).unwrap();
@@ -68,11 +72,11 @@ fn command_some() -> Result<(), Box<dyn std::error::Error>> {
     assert!(stdout.contains("read0\n"), "read0");
     assert!(stdout.contains("read12\n"), "read12");
 
-    let mut cmd = Command::cargo_bin("far")?;
+    let mut cmd = Command::cargo_bin("fars")?;
     let output = cmd
         .arg("some")
-        .arg("tests/far/ufasta.fa")
-        .arg("tests/far/lst.txt")
+        .arg("tests/fars/ufasta.fa")
+        .arg("tests/fars/lst.txt")
         .arg("-i")
         .output()
         .unwrap();
