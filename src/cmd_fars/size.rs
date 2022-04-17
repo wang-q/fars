@@ -25,7 +25,7 @@ pub fn make_subcommand<'a>() -> Command<'a> {
 }
 
 // command implementation
-pub fn execute(args: &ArgMatches) -> std::result::Result<(), std::io::Error> {
+pub fn execute(args: &ArgMatches) -> std::result::Result<(), Box<dyn std::error::Error>> {
     let mut writer = writer(args.value_of("outfile").unwrap());
 
     for infile in args.values_of("infiles").unwrap() {
