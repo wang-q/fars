@@ -47,11 +47,11 @@ SUBCOMMANDS:
 
 ```bash
 diff \
-    <(target/debug/fars size tests/fars/ufasta.fa) \
+    <(fars size tests/fars/ufasta.fa) \
     <(faops size tests/fars/ufasta.fa)
 
-target/debug/fars region tests/fars/ufasta.fa
+fars region tests/fars/ufasta.fa
 
-target/debug/fars some tests/fars/ufasta.fa tests/fars/lst.txt
+fars some tests/fars/ufasta.fa tests/fars/lst.txt
 
 ```

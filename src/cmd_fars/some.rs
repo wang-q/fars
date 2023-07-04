@@ -4,49 +4,49 @@ use intspan::*;
 use std::collections::HashSet;
 
 // Create clap subcommand arguments
-pub fn make_subcommand<'a>() -> Command<'a> {
+pub fn make_subcommand() -> Command {
     Command::new("some")
         .about("Extract some FA records")
         .arg(
             Arg::new("infile")
-                .help("Sets the input file to use")
                 .required(true)
-                .index(1),
+                .index(1)
+                .help("Sets the input file to use"),
         )
         .arg(
             Arg::new("lst")
-                .help("One name per line")
                 .required(true)
-                .index(2),
+                .index(2)
+                .help("One name per line"),
         )
         .arg(
             Arg::new("invert")
                 .long("invert")
                 .short('i')
+                .action(ArgAction::SetTrue)
                 .help("Output sequences not in the list"),
         )
         .arg(
             Arg::new("outfile")
-                .short('o')
                 .long("outfile")
-                .takes_value(true)
+                .short('o')
+                .num_args(1)
                 .default_value("stdout")
-                .forbid_empty_values(true)
                 .help("Output filename. [stdout] for screen"),
         )
 }
 
 // command implementation
-pub fn execute(args: &ArgMatches) -> std::result::Result<(), Box<dyn std::error::Error>> {
-    let is_invert = args.is_present("invert");
+pub fn execute(args: &ArgMatches) -> anyhow::Result<()> {
+    let is_invert = args.get_flag("invert");
 
-    let reader = reader(args.value_of("infile").unwrap());
+    let reader = reader(args.get_one::<String>("infile").unwrap());
     let fa_in = fasta::Reader::new(reader);
 
-    let writer = writer(args.value_of("outfile").unwrap());
+    let writer = writer(args.get_one::<String>("outfile").unwrap());
     let mut fa_out = fasta::Writer::new(writer);
 
-    let set_lst: HashSet<String> = read_first_column(args.value_of("lst").unwrap())
+    let set_lst: HashSet<String> = read_first_column(args.get_one::<String>("lst").unwrap())
         .into_iter()
         .collect();
 

@@ -52,10 +52,16 @@ hyperfine --warmup 1 --export-markdown size.md.tmp \
 
 ```bash
 hyperfine --warmup 1 --export-markdown some.md.tmp \
+    -n "fars some" \
+    -n "faops some" \
+    -n "fars some -i" \
+    -n "faops some -i" \
     'fars  some tests/fars/ufasta.fa.gz tests/fars/lst.txt > /dev/null' \
     'faops some tests/fars/ufasta.fa.gz tests/fars/lst.txt stdout > /dev/null' \
     'fars  some -i tests/fars/ufasta.fa.gz tests/fars/lst.txt > /dev/null' \
     'faops some -i tests/fars/ufasta.fa.gz tests/fars/lst.txt stdout > /dev/null'
+
+cat some.md.tmp
 
 ```
 
